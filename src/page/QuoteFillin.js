@@ -54,7 +54,7 @@ var QuoteFillin = React.createClass({
       .catch((error) => console.warn(error));
 
     AsyncStorage.getItem('offerCoupon')
-      .then(res => this.setState({offerCoupon: JSON.parse(res)}))
+      .then(res => this.setState({offerCoupon: JSON.parse(res) || false}))
       .catch((error) => console.warn(error));
   },
   render: function () {
@@ -78,7 +78,6 @@ var QuoteFillin = React.createClass({
 
           <View style={[styles.viewContainer, styles.multilineContainer]}>
             <TextInput
-              ref="testInput"
               style={[styles.input, styles.multiline]}
               multiline={true}
               placeholder="请输入备注"

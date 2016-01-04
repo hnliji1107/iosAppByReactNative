@@ -78,7 +78,7 @@ var navigatorConfigs = {
 
 
 module.exports = {
-  host: '10.17.215.110',
+  host: 'localhost',
   navigatorConfigs: navigatorConfigs
 };
 
