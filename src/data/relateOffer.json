@@ -1,116 +1,139 @@
 [
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 101,
+    "title": "产品1",
+    "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
+    "price": 17001
+  },
+  {
+    "offerId": 102,
+    "title": "产品2",
+    "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
+    "price": 17002
+  },
+  {
+    "offerId": 103,
+    "title": "产品3",
+    "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
+    "price": 17003
+  },
+  {
+    "offerId": 104,
+    "title": "产品4",
+    "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
+    "price": 17004
+  },
+  {
+    "offerId": 105,
+    "title": "产品5",
+    "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
+    "price": 17005
+  },
+  {
+    "offerId": 106,
+    "title": "产品6",
+    "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
+    "price": 17006
+  },
+  {
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   },
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   },
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   },
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   },
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   },
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   },
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   },
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   },
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   },
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   },
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   },
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   },
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   },
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   },
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   },
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   },
   {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
-    "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
-    "price": 17000
-  },
-  {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
-    "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
-    "price": 17000
-  },
-  {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
-    "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
-    "price": 17000
-  },
-  {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
-    "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
-    "price": 17000
-  },
-  {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
-    "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
-    "price": 17000
-  },
-  {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
-    "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
-    "price": 17000
-  },
-  {
-    "title": "关联产品关联产品关联产品关联产品关联产品关联产品",
+    "offerId": 106,
+    "title": "产品1",
     "img": "http://cbu01.alicdn.com/img/ibank/2015/013/297/2640792310_431386837.80x80.jpg",
     "price": 17000
   }

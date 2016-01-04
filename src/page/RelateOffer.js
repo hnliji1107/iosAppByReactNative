@@ -73,8 +73,14 @@ var RelateOffer = React.createClass({
     );
   },
   selectRow: function (rowData) {
-    AsyncStorage.setItem('relateOfferTitle', rowData.title,
-      () => this.props.navigator.replace({name: 'QuoteFillin'}));
+    AsyncStorage.setItem('relateOffer', JSON.stringify(rowData), () => {
+        this.props.navigator.immediatelyResetRouteStack([
+          {name: 'SignAgreement'},
+          {name: 'InquirySheet'},
+          {name: 'QuoteFillin'}
+        ]);
+      }
+    );
   }
 });
 

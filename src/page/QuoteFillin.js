@@ -28,9 +28,34 @@ var Footer = require('../public/Footer');
 
 
 var QuoteFillin = React.createClass({
+  getInitialState: function () {
+    return {
+      offerPrice: '',
+      offerRemark: '',
+      offerTitle: '',
+      offerCoupon: false
+    };
+  },
   componentWillMount: function () {
-    AsyncStorage.getItem('relateOfferTitle')
-      .then(res => console.log(this.props.navigator.getCurrentRoutes()))
+    AsyncStorage.getItem('relateOffer')
+      .then(res => {
+        this.setState({
+          offerTitle: (JSON.parse(res) || {}).title
+        });
+      })
+      .catch((error) => console.warn(error));
+
+    AsyncStorage.getItem('offerPrice')
+      .then(res => this.setState({offerPrice: res}))
+      .catch((error) => console.warn(error));
+
+    AsyncStorage.getItem('offerRemark')
+      .then(res => this.setState({offerRemark: res}))
+      .catch((error) => console.warn(error));
+
+    AsyncStorage.getItem('offerCoupon')
+      .then(res => this.setState({offerCoupon: JSON.parse(res)}))
+      .catch((error) => console.warn(error));
   },
   render: function () {
     return (
@@ -43,7 +68,8 @@ var QuoteFillin = React.createClass({
               keyboardType="numeric"
               placeholder="请输入价格"
               placeholderTextColor="#999"
-              value=""/>
+              onEndEditing={this.saveOfferPrice}
+              value={this.state.offerPrice}/>
             <View style={styles.required}>
               <Text style={styles.star}>*</Text>
               <Text style={styles.rmb}>¥</Text>
@@ -52,11 +78,13 @@ var QuoteFillin = React.createClass({
 
           <View style={[styles.viewContainer, styles.multilineContainer]}>
             <TextInput
+              ref="testInput"
               style={[styles.input, styles.multiline]}
               multiline={true}
               placeholder="请输入备注"
               placeholderTextColor="#999"
-              value=""/>
+              onEndEditing={this.saveOfferRemark}
+              value={this.state.offerRemark}/>
           </View>
 
           <View style={[styles.viewContainer, styles.selectContainer]}>
@@ -67,7 +95,7 @@ var QuoteFillin = React.createClass({
                   editable={false}
                   placeholder="请选择关联产品"
                   placeholderTextColor="#999"
-                  value=""/>
+                  value={this.state.offerTitle}/>
                 <View style={styles.required}>
                   <Text style={styles.star}>*</Text>
                 </View>
@@ -79,8 +107,11 @@ var QuoteFillin = React.createClass({
           </View>
 
           <View style={[styles.viewContainer, styles.switchContainer]}>
-            <Switch style={styles.switch}>
-            </Switch>
+            <Switch
+              style={styles.switch}
+              onValueChange={this.saveCoupon}
+              value={this.state.offerCoupon}
+              />
             <Text style={styles.tip}>发放1元打样优惠券（提高被买家选中的概率）</Text>
           </View>
 
@@ -88,6 +119,17 @@ var QuoteFillin = React.createClass({
         <Footer navigator={this.props.navigator} config={this.props.config}/>
       </View>
     );
+  },
+  saveOfferPrice: function (event) {
+    AsyncStorage.setItem('offerPrice', event.nativeEvent.text);
+  },
+  saveOfferRemark: function (event) {
+    AsyncStorage.setItem('offerRemark', event.nativeEvent.text);
+  },
+  saveCoupon: function (value) {
+    this.setState({offerCoupon: value});
+
+    AsyncStorage.setItem('offerCoupon', JSON.stringify(value));
   }
 });
 
