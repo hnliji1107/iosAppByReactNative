@@ -61,7 +61,7 @@ var QuoteFillin = React.createClass({
     return (
       <View style={styles.container}>
         <Header navigator={this.props.navigator} config={this.props.config}/>
-        <View>
+        <ScrollView>
           <View style={styles.viewContainer}>
             <TextInput
               style={styles.input}
@@ -114,7 +114,7 @@ var QuoteFillin = React.createClass({
             <Text style={styles.tip}>发放1元打样优惠券（提高被买家选中的概率）</Text>
           </View>
 
-        </View>
+        </ScrollView>
         <Footer navigator={this.props.navigator} config={this.props.config}/>
       </View>
     );

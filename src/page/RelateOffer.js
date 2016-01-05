@@ -17,12 +17,15 @@ var {
   ListView,
   TouchableHighlight,
   Image,
-  AsyncStorage
+  AsyncStorage,
+  ActivityIndicatorIOS
   } = React;
 
 var Header = require('../public/Header');
 
 var Footer = require('../public/Footer');
+
+var _ = require('../lib/underscore');
 
 
 var RelateOffer = React.createClass({
@@ -30,7 +33,9 @@ var RelateOffer = React.createClass({
     return {
       dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
-      })
+      }),
+      cacheOffers: [],
+      currentOffes: []
     };
   },
   componentWillMount: function () {
@@ -42,20 +47,51 @@ var RelateOffer = React.createClass({
       });
   },
   render: function () {
-    return (
-      <View style={styles.container}>
-        <Header navigator={this.props.navigator} config={this.props.config}/>
+    var resultJSX = (
+      <ActivityIndicatorIOS
+        size="large"
+        style={styles.loading}
+        />
+    );
+
+    if (this.state.currentOffes.length > 0) {
+      resultJSX = (
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderRow}
           />
+      );
+    } else {
+      resultJSX = (
+        <View style={styles.emptyResult}>
+          <Text>抱歉，搜索无结果</Text>
+        </View>
+      );
+    }
+
+    return (
+      <View style={styles.container}>
+        <Header navigator={this.props.navigator} config={this.props.config}/>
+        <View style={styles.searchContainer}>
+          <Image source={require('image!search')} style={styles.searchIcon}/>
+          <TextInput
+            placeholder="请输入产品名称搜索"
+            placeholderTextColor="#999"
+            returnKeyType="search"
+            onSubmitEditing={this.searchOffer}
+            style={styles.searchInput}
+            />
+        </View>
+        {resultJSX}
       </View>
     );
   },
   updateDataSource: function (data) {
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(data)
-    })
+      dataSource: this.state.dataSource.cloneWithRows(data),
+      cacheOffers: data,
+      currentOffes: data
+    });
   },
   renderRow: function (rowData) {
     return (
@@ -81,6 +117,21 @@ var RelateOffer = React.createClass({
         ]);
       }
     );
+  },
+  searchOffer: function (event) {
+    var reg = new RegExp(event.nativeEvent.text, 'ig'),
+      searchResult = [];
+
+    _.each(this.state.cacheOffers, function (offer) {
+      if (reg.test(offer.title)) {
+        searchResult.push(offer);
+      }
+    });
+
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(searchResult),
+      currentOffes: searchResult
+    });
   }
 });
 
@@ -125,6 +176,37 @@ var styles = StyleSheet.create({
     overflow: 'hidden',
     color: '#999',
     fontSize: 16
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    backgroundColor: '#eee',
+    borderWidth: 1,
+    borderColor: '#eee',
+    borderRadius: 4,
+    marginTop: 10,
+    marginBottom: 13,
+    marginLeft: 30,
+    marginRight: 30
+  },
+  searchIcon: {
+    marginTop: 7,
+    marginLeft: 10,
+    marginRight: 10,
+    width: 16,
+    height: 16
+  },
+  searchInput: {
+    flex: 1,
+    height: 30,
+    fontSize: 14
+  },
+  loading: {
+    marginTop: 100
+  },
+  emptyResult: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 150
   }
 });
 
