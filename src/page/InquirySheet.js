@@ -7,9 +7,8 @@
 
 'use strict';
 
-var React = require('react-native');
-
-var {
+import React, {
+  Component,
   AppRegistry,
   StyleSheet,
   Text,
@@ -17,17 +16,17 @@ var {
   ScrollView,
   Image,
   TouchableHighlight
-  } = React;
+  } from 'react-native';
 
-var Header = require('../public/Header');
+import Header from '../public/Header';
 
-var Footer = require('../public/Footer');
+import Footer from '../public/Footer';
 
-var ImageSwiper = require('../public/ImageSwiper');
+import ImageSwiper from '../public/ImageSwiper';
 
 
-var InquirySheet = React.createClass({
-  render: function () {
+class InquirySheet extends Component {
+  render() {
     return (
       <View style={styles.container}>
         <Header navigator={this.props.navigator} config={this.props.config}/>
@@ -160,10 +159,10 @@ var InquirySheet = React.createClass({
       </View>
     );
   }
-});
+}
 
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
@@ -239,4 +238,4 @@ var styles = StyleSheet.create({
 });
 
 
-module.exports = InquirySheet;
+export default InquirySheet;

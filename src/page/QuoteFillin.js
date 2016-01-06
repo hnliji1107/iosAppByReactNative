@@ -8,9 +8,8 @@
 
 'use strict';
 
-var React = require('react-native');
-
-var {
+import React, {
+  Component,
   StyleSheet,
   Text,
   View,
@@ -20,23 +19,26 @@ var {
   Image,
   Switch,
   AsyncStorage
-  } = React;
+  } from 'react-native';
 
-var Header = require('../public/Header');
+import Header from '../public/Header';
 
-var Footer = require('../public/Footer');
+import Footer from '../public/Footer';
 
 
-var QuoteFillin = React.createClass({
-  getInitialState: function () {
-    return {
+class QuoteFillin extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       offerPrice: '',
       offerRemark: '',
       offerTitle: '',
       offerCoupon: false
-    };
-  },
-  componentWillMount: function () {
+    }
+  }
+
+  componentWillMount() {
     AsyncStorage.getItem('relateOffer')
       .then(res => {
         this.setState({
@@ -56,8 +58,9 @@ var QuoteFillin = React.createClass({
     AsyncStorage.getItem('offerCoupon')
       .then(res => this.setState({offerCoupon: JSON.parse(res) || false}))
       .catch((error) => console.warn(error));
-  },
-  render: function () {
+  }
+
+  render() {
     return (
       <View style={styles.container}>
         <Header navigator={this.props.navigator} config={this.props.config}/>
@@ -68,7 +71,7 @@ var QuoteFillin = React.createClass({
               keyboardType="numeric"
               placeholder="请输入价格"
               placeholderTextColor="#999"
-              onEndEditing={this.saveOfferPrice}
+              onEndEditing={(event) => saveDataToNative('offerPrice', event.nativeEvent.text)}
               value={this.state.offerPrice}/>
             <View style={styles.required}>
               <Text style={styles.star}>*</Text>
@@ -82,7 +85,7 @@ var QuoteFillin = React.createClass({
               multiline={true}
               placeholder="请输入备注"
               placeholderTextColor="#999"
-              onEndEditing={this.saveOfferRemark}
+              onEndEditing={(event) => saveDataToNative('offerRemark', event.nativeEvent.text)}
               value={this.state.offerRemark}/>
           </View>
 
@@ -108,7 +111,10 @@ var QuoteFillin = React.createClass({
           <View style={[styles.viewContainer, styles.switchContainer]}>
             <Switch
               style={styles.switch}
-              onValueChange={this.saveCoupon}
+              onValueChange={(value) => {
+                this.setState({offerCoupon: value});
+                saveDataToNative('offerCoupon', JSON.stringify(value));
+              }}
               value={this.state.offerCoupon}
               />
             <Text style={styles.tip}>发放1元打样优惠券（提高被买家选中的概率）</Text>
@@ -118,22 +124,16 @@ var QuoteFillin = React.createClass({
         <Footer navigator={this.props.navigator} config={this.props.config}/>
       </View>
     );
-  },
-  saveOfferPrice: function (event) {
-    AsyncStorage.setItem('offerPrice', event.nativeEvent.text);
-  },
-  saveOfferRemark: function (event) {
-    AsyncStorage.setItem('offerRemark', event.nativeEvent.text);
-  },
-  saveCoupon: function (value) {
-    this.setState({offerCoupon: value});
-
-    AsyncStorage.setItem('offerCoupon', JSON.stringify(value));
   }
-});
+}
 
 
-var styles = StyleSheet.create({
+function saveDataToNative(key, value) {
+  AsyncStorage.setItem(key, value);
+}
+
+
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
@@ -207,4 +207,4 @@ var styles = StyleSheet.create({
 });
 
 
-module.exports = QuoteFillin;
+export default QuoteFillin;

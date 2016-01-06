@@ -7,17 +7,16 @@
 
 'use strict';
 
-var React = require('react-native');
-
-var {
+import React, {
+  Component,
   StyleSheet,
   Text,
   View
-  } = React;
+  } from 'react-native';
 
 
-var Agreement = React.createClass({
-  render: function () {
+class Agreement extends Component {
+  render() {
     return (
       <View style={styles.container}>
         <View>
@@ -75,10 +74,10 @@ var Agreement = React.createClass({
       </View>
     );
   }
-});
+}
 
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     margin: 20
   },
@@ -106,4 +105,4 @@ var styles = StyleSheet.create({
 });
 
 
-module.exports = Agreement;
+export default Agreement;

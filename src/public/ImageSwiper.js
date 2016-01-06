@@ -7,22 +7,21 @@
 
 'use strict';
 
-var React = require('react-native');
-
-var {
+import React, {
+  Component,
   AppRegistry,
   StyleSheet,
   Text,
   View,
   Image
-  } = React;
+  } from 'react-native';
 
 // https://github.com/leecade/react-native-swiper?utm_source=tuicool&utm_medium=referral
-var Swiper = require('react-native-swiper');
+import Swiper from 'react-native-swiper';
 
 
-var ImageSwiper = React.createClass({
-  render: function () {
+class ImageSwiper extends Component {
+  render() {
     return (
       <View style={styles.container}>
         <Swiper width={250} height={300}>
@@ -50,10 +49,10 @@ var ImageSwiper = React.createClass({
       </View>
     )
   }
-});
+}
 
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     marginTop: 20,
     alignItems: 'center',
@@ -66,4 +65,4 @@ var styles = StyleSheet.create({
 });
 
 
-module.exports = ImageSwiper;
+export default ImageSwiper;

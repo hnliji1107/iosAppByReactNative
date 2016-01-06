@@ -7,51 +7,37 @@
 
 'use strict';
 
-var React = require('react-native');
-
-var {
+import React, {
+  Component,
   AppRegistry,
   Text,
   View,
   Navigator
-  } = React;
+  } from 'react-native';
 
-var _ = require('./src/lib/underscore');
+import _ from './src/lib/underscore';
 
-var configs = require('./src/lib/configs');
-
-var navigatorConfigs = configs.navigatorConfigs;
+import navigatorConfigs from './src/lib/navigatorConfigs';
 
 
-var iosAppByReactNative = React.createClass({
-  render: function () {
-    //页面间切换效果：
-    //SceneConfigs = [
-    //  'PushFromRight',
-    //  'FloatFromRight',
-    //  'FloatFromLeft',
-    //  'FloatFromBottom',
-    //  'FloatFromBottomAndroid',
-    //  'FadeAndroid',
-    //  'HorizontalSwipeJump',
-    //  'VerticalUpSwipeJump',
-    //  'VerticalDownSwipeJump'
-    //];
-
+class IosAppByReactNative extends Component {
+  render() {
+    //页面间切换效果：SceneConfigs = ['PushFromRight','FloatFromRight','FloatFromLeft','FloatFromBottom','FloatFromBottomAndroid','FadeAndroid','HorizontalSwipeJump','VerticalUpSwipeJump','VerticalDownSwipeJump'];
     return (
       <Navigator
         initialRoute={{name: navigatorConfigs['SignAgreement'].name}}
-        renderScene={this.renderScene}
+        renderScene={renderScene}
         configureScene={(route) => Navigator.SceneConfigs.FloatFromRight}
         />
     );
-  },
-  renderScene: function (route, navigator) {
-    var config = _.extend(navigatorConfigs[route.name], {host: configs.host});
-
-    return <config.component navigator={navigator} config={config}/>
   }
-});
+}
+
+function renderScene(route, navigator) {
+  const config = navigatorConfigs[route.name];
+
+  return <config.component navigator={navigator} config={config}/>
+}
 
 
-AppRegistry.registerComponent('iosAppByReactNative', () => iosAppByReactNative);
+AppRegistry.registerComponent('iosAppByReactNative', () => IosAppByReactNative);

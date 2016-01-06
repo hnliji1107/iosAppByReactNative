@@ -7,19 +7,18 @@
 
 'use strict';
 
-var React = require('react-native');
-
-var {
+import React, {
+  Component,
   StyleSheet,
   Text,
   View,
   Image,
   TouchableHighlight
-  } = React;
+  } from 'react-native';
 
 
-var Header = React.createClass({
-  render: function () {
+class Header extends Component {
+  render() {
     var headJumpContent, headerBtns = this.props.config.headerBtns || [];
 
     if (headerBtns.length > 0) {
@@ -45,10 +44,10 @@ var Header = React.createClass({
       </View>
     );
   }
-});
+}
 
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: '#5989d4',
@@ -82,4 +81,4 @@ var styles = StyleSheet.create({
 });
 
 
-module.exports = Header;
+export default Header;

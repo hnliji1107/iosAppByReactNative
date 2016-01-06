@@ -7,16 +7,20 @@
 
 'use strict';
 
-var React = require('react-native');
+import React, {AlertIOS} from 'react-native';
 
-var {
-  AlertIOS
-  } = React;
+import SignAgreement from '../page/SignAgreement';
+
+import InquirySheet from '../page/InquirySheet';
+
+import QuoteFillin from '../page/QuoteFillin';
+
+import RelateOffer from '../page/RelateOffer';
 
 
-var navigatorConfigs = {
+const navigatorConfigs = {
   SignAgreement: {
-    component: require('../page/SignAgreement'),
+    component: SignAgreement,
     name: 'SignAgreement',
     title: '签署协议',
     footerBtns: [{
@@ -29,7 +33,7 @@ var navigatorConfigs = {
   },
 
   InquirySheet: {
-    component: require('../page/InquirySheet'),
+    component: InquirySheet,
     name: 'InquirySheet',
     title: '待报价询价单',
     headerBtns: [{
@@ -53,7 +57,7 @@ var navigatorConfigs = {
   },
 
   QuoteFillin: {
-    component: require('../page/QuoteFillin'),
+    component: QuoteFillin,
     name: 'QuoteFillin',
     title: '报价信息',
     footerBtns: [{
@@ -66,7 +70,7 @@ var navigatorConfigs = {
   },
 
   RelateOffer: {
-    component: require('../page/RelateOffer'),
+    component: RelateOffer,
     name: 'RelateOffer',
     title: '关联产品',
     headerBtns: [{
@@ -76,9 +80,6 @@ var navigatorConfigs = {
   }
 };
 
+export default navigatorConfigs;
 
-module.exports = {
-  host: '10.17.214.219',
-  navigatorConfigs: navigatorConfigs
-};
 

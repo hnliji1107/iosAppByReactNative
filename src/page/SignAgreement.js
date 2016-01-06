@@ -7,24 +7,23 @@
 
 'use strict';
 
-var React = require('react-native');
-
-var {
+import React, {
+  Component,
   StyleSheet,
   Text,
   View,
   ScrollView
-  } = React;
+  } from 'react-native';
 
-var Header = require('../public/Header');
+import Header from '../public/Header';
 
-var Footer = require('../public/Footer');
+import Footer from '../public/Footer';
 
-var Agreement = require('../public/Agreement');
+import Agreement from '../public/Agreement';
 
 
-var SignAgreement = React.createClass({
-  render: function () {
+class SignAgreement extends Component {
+  render() {
     return (
       <View style={styles.container}>
         <Header navigator={this.props.navigator} config={this.props.config}/>
@@ -35,10 +34,10 @@ var SignAgreement = React.createClass({
       </View>
     );
   }
-});
+}
 
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
@@ -46,4 +45,4 @@ var styles = StyleSheet.create({
 });
 
 
-module.exports = SignAgreement;
+export default SignAgreement;

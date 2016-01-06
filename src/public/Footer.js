@@ -7,19 +7,18 @@
 
 'use strict';
 
-var React = require('react-native');
-
-var {
+import React, {
+  Component,
   StyleSheet,
   Text,
   View,
   Dimensions,
   TouchableHighlight
-  } = React;
+  } from 'react-native';
 
 
-var Footer = React.createClass({
-  render: function () {
+class Footer extends Component {
+  render() {
     return (
       <View style={styles.container}>
         <TouchableHighlight
@@ -45,10 +44,10 @@ var Footer = React.createClass({
       </View>
     );
   }
-});
+}
 
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     flex: 1,
@@ -85,4 +84,4 @@ var styles = StyleSheet.create({
 });
 
 
-module.exports = Footer;
+export default Footer;

@@ -7,9 +7,8 @@
 
 'use strict';
 
-var React = require('react-native');
-
-var {
+import React, {
+  Component,
   StyleSheet,
   Text,
   View,
@@ -19,34 +18,40 @@ var {
   Image,
   AsyncStorage,
   ActivityIndicatorIOS
-  } = React;
+  } from 'react-native';
 
-var Header = require('../public/Header');
+import Header from '../public/Header';
 
-var Footer = require('../public/Footer');
+import Footer from '../public/Footer';
 
-var _ = require('../lib/underscore');
+import _ from '../lib/underscore';
+
+import host from '../lib/hostConfigs';
 
 
-var RelateOffer = React.createClass({
-  getInitialState: function () {
-    return {
+class RelateOffer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
       dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
       }),
       cacheOffers: [],
       currentOffes: []
     };
-  },
-  componentWillMount: function () {
-    fetch("http://" + this.props.config.host + ":8081/src/data/relateOffer.json")
+  }
+
+  componentWillMount() {
+    fetch("http://" + host + ":8081/src/data/relateOffer.json")
       .then(res => res.json())
       .then(res => this.updateDataSource(res))
       .catch((error) => {
         console.warn(error);
       });
-  },
-  render: function () {
+  }
+
+  render() {
     var resultJSX = (
       <ActivityIndicatorIOS
         size="large"
@@ -58,7 +63,7 @@ var RelateOffer = React.createClass({
       resultJSX = (
         <ListView
           dataSource={this.state.dataSource}
-          renderRow={this.renderRow}
+          renderRow={this.renderRow.bind(this)}
           />
       );
     } else {
@@ -78,24 +83,26 @@ var RelateOffer = React.createClass({
             placeholder="请输入产品名称搜索"
             placeholderTextColor="#999"
             returnKeyType="search"
-            onSubmitEditing={this.searchOffer}
+            onSubmitEditing={this.searchOffer.bind(this)}
             style={styles.searchInput}
             />
         </View>
         {resultJSX}
       </View>
     );
-  },
-  updateDataSource: function (data) {
+  }
+
+  updateDataSource(data) {
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(data),
       cacheOffers: data,
       currentOffes: data
     });
-  },
-  renderRow: function (rowData) {
+  }
+
+  renderRow(rowData) {
     return (
-      <TouchableHighlight onPress={this.selectRow.bind(this, rowData)}>
+      <TouchableHighlight onPress={() => this.selectRow(rowData)}>
         <View style={styles.rowContainer}>
           <View style={styles.avatorContainer}>
             <Image source={{uri: rowData.img}} style={styles.avator}/>
@@ -107,8 +114,9 @@ var RelateOffer = React.createClass({
         </View>
       </TouchableHighlight>
     );
-  },
-  selectRow: function (rowData) {
+  }
+
+  selectRow(rowData) {
     AsyncStorage.setItem('relateOffer', JSON.stringify(rowData), () => {
         this.props.navigator.immediatelyResetRouteStack([
           {name: 'SignAgreement'},
@@ -117,8 +125,9 @@ var RelateOffer = React.createClass({
         ]);
       }
     );
-  },
-  searchOffer: function (event) {
+  }
+
+  searchOffer(event) {
     var reg = new RegExp(event.nativeEvent.text, 'ig'),
       searchResult = [];
 
@@ -133,10 +142,10 @@ var RelateOffer = React.createClass({
       currentOffes: searchResult
     });
   }
-});
+}
 
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
@@ -211,4 +220,4 @@ var styles = StyleSheet.create({
 });
 
 
-module.exports = RelateOffer;
+export default RelateOffer;
