@@ -35,8 +35,18 @@ class QuoteFillin extends Component {
       offerRemark: '',
       offerTitle: '',
       offerCoupon: false
-    }
+    };
   }
+
+  static propTypes = {
+    navigator: React.PropTypes.object,
+    config: React.PropTypes.object
+  };
+
+  static defaultProps = {
+    navigator: {},
+    config: {}
+  };
 
   componentWillMount() {
     AsyncStorage.getItem('relateOffer')

@@ -18,6 +18,14 @@ import React, {
 
 
 class Header extends Component {
+  static propTypes = {
+    config: React.PropTypes.object
+  };
+
+  static defaultProps = {
+    config: {}
+  };
+
   render() {
     var headJumpContent, headerBtns = this.props.config.headerBtns || [];
 

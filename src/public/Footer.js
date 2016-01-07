@@ -18,6 +18,14 @@ import React, {
 
 
 class Footer extends Component {
+  static propTypes = {
+    config: React.PropTypes.object
+  };
+
+  static defaultProps = {
+    config: {}
+  };
+
   render() {
     return (
       <View style={styles.container}>

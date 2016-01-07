@@ -26,6 +26,16 @@ import ImageSwiper from '../public/ImageSwiper';
 
 
 class InquirySheet extends Component {
+  static propTypes = {
+    navigator: React.PropTypes.object,
+    config: React.PropTypes.object
+  };
+
+  static defaultProps = {
+    navigator: {},
+    config: {}
+  };
+
   render() {
     return (
       <View style={styles.container}>

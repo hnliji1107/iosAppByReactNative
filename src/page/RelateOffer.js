@@ -42,6 +42,16 @@ class RelateOffer extends Component {
     };
   }
 
+  static propTypes = {
+    navigator: React.PropTypes.object,
+    config: React.PropTypes.object
+  };
+
+  static defaultProps = {
+    navigator: {},
+    config: {}
+  };
+
   componentWillMount() {
     fetch("http://" + host + ":8081/src/data/relateOffer.json")
       .then(res => res.json())
