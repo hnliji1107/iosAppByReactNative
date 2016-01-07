@@ -70,7 +70,6 @@ class Agreement extends Component {
         <View style={[styles.titleContainer, styles.endContainer]}>
           <Text style={styles.title}>本企业同意以上协议</Text>
         </View>
-
       </View>
     );
   }

@@ -22,8 +22,6 @@ import React, {
 
 import Header from '../public/Header';
 
-import Footer from '../public/Footer';
-
 import _ from '../lib/underscore';
 
 import host from '../lib/hostConfigs';
@@ -37,19 +35,16 @@ class RelateOffer extends Component {
       dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2
       }),
-      cacheOffers: [],
-      currentOffes: []
+      cacheOffers: []
     };
   }
 
   static propTypes = {
-    navigator: React.PropTypes.object,
-    config: React.PropTypes.object
+    navigator: React.PropTypes.object
   };
 
   static defaultProps = {
-    navigator: {},
-    config: {}
+    navigator: {}
   };
 
   componentWillMount() {
@@ -62,41 +57,79 @@ class RelateOffer extends Component {
   }
 
   render() {
+
     var resultJSX = (
-      <ActivityIndicatorIOS
-        size="large"
-        style={styles.loading}
-        />
+      <ActivityIndicatorIOS size="large" style={styles.loading}/>
     );
 
-    if (this.state.currentOffes.length > 0) {
-      resultJSX = (
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this.renderRow.bind(this)}
+    var searBarJSX = (
+      <View style={styles.searchContainer}>
+        <Image source={require('image!search')} style={styles.searchIcon}/>
+
+        <TextInput
+          placeholder="请输入产品名称搜索"
+          placeholderTextColor="#999"
+          returnKeyType="search"
+          onSubmitEditing={this.searchOffer.bind(this)}
+          style={styles.searchInput}
           />
-      );
-    } else {
-      resultJSX = (
-        <View style={styles.emptyResult}>
-          <Text>抱歉，搜索无结果</Text>
-        </View>
-      );
+      </View>
+    );
+
+
+    //这一步判断的作用是防止过早的显示无结果提示，
+    //只有等到异步结果到了之后才判断显示什么结果，
+    //在此之前只显示loading图标
+    if (this.state.currentOffes) {
+
+      if (this.state.currentOffes.length > 0) {
+        resultJSX = (
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this.renderRow.bind(this)}
+            />
+        );
+
+      } else {
+
+        if (this.state.isSearch) {
+          resultJSX = (
+            <View style={styles.emptyResult}>
+              <Image source={require('image!weep')} style={styles.weepSmile}/>
+              <Text style={styles.emptyTip}>抱歉，搜索无结果</Text>
+            </View>
+          );
+
+        } else {
+
+          searBarJSX = (
+            <View>
+              <Text></Text>
+            </View>
+          );
+
+          resultJSX = (
+            <View style={styles.emptyResult}>
+              <Image source={require('image!weep')} style={styles.weepSmile}/>
+
+              <Text style={styles.emptyTip}>您还未有相关加工产品，</Text>
+              <Text style={styles.emptyTip}>请电脑登录1688发布供应产品...</Text>
+            </View>
+          );
+        }
+      }
+
     }
 
     return (
       <View style={styles.container}>
-        <Header navigator={this.props.navigator} config={this.props.config}/>
-        <View style={styles.searchContainer}>
-          <Image source={require('image!search')} style={styles.searchIcon}/>
-          <TextInput
-            placeholder="请输入产品名称搜索"
-            placeholderTextColor="#999"
-            returnKeyType="search"
-            onSubmitEditing={this.searchOffer.bind(this)}
-            style={styles.searchInput}
-            />
-        </View>
+        <Header
+          title="关联产品"
+          leftButtonText="返回"
+          leftButtonCallback={this.headerLeftButtonCallback.bind(this)}
+          />
+
+        {searBarJSX}
         {resultJSX}
       </View>
     );
@@ -117,6 +150,7 @@ class RelateOffer extends Component {
           <View style={styles.avatorContainer}>
             <Image source={{uri: rowData.img}} style={styles.avator}/>
           </View>
+
           <View style={styles.infoContainer}>
             <Text style={styles.title}>{rowData.title}</Text>
             <Text style={styles.price}>价格：¥{rowData.price}</Text>
@@ -149,8 +183,13 @@ class RelateOffer extends Component {
 
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(searchResult),
-      currentOffes: searchResult
+      currentOffes: searchResult,
+      isSearch: true
     });
+  }
+
+  headerLeftButtonCallback() {
+    this.props.navigator.pop();
   }
 }
 
@@ -224,8 +263,19 @@ const styles = StyleSheet.create({
   },
   emptyResult: {
     alignItems: 'center',
-    justifyContent: 'center',
-    height: 150
+    justifyContent: 'center'
+  },
+  emptyTip: {
+    height: 30,
+    lineHeight: 30,
+    fontSize: 16,
+    color: '#444'
+  },
+  weepSmile: {
+    marginTop: 100,
+    marginBottom: 20,
+    width: 80,
+    height: 80
   }
 });
 

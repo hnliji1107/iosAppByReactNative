@@ -39,13 +39,11 @@ class QuoteFillin extends Component {
   }
 
   static propTypes = {
-    navigator: React.PropTypes.object,
-    config: React.PropTypes.object
+    navigator: React.PropTypes.object
   };
 
   static defaultProps = {
-    navigator: {},
-    config: {}
+    navigator: {}
   };
 
   componentWillMount() {
@@ -73,7 +71,12 @@ class QuoteFillin extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header navigator={this.props.navigator} config={this.props.config}/>
+        <Header
+          title="报价信息"
+          leftButtonText="返回"
+          leftButtonCallback={this.headerLeftButtonCallback.bind(this)}
+          />
+
         <ScrollView>
           <View style={styles.viewContainer}>
             <TextInput
@@ -83,6 +86,7 @@ class QuoteFillin extends Component {
               placeholderTextColor="#999"
               onEndEditing={(event) => saveDataToNative('offerPrice', event.nativeEvent.text)}
               value={this.state.offerPrice}/>
+
             <View style={styles.required}>
               <Text style={styles.star}>*</Text>
               <Text style={styles.rmb}>¥</Text>
@@ -108,9 +112,11 @@ class QuoteFillin extends Component {
                   placeholder="请选择关联产品"
                   placeholderTextColor="#999"
                   value={this.state.offerTitle}/>
+
                 <View style={styles.required}>
                   <Text style={styles.star}>*</Text>
                 </View>
+
                 <View style={styles.iconContainer}>
                   <Image source={require('image!right-dir')} style={styles.icon}/>
                 </View>
@@ -125,15 +131,33 @@ class QuoteFillin extends Component {
                 this.setState({offerCoupon: value});
                 saveDataToNative('offerCoupon', JSON.stringify(value));
               }}
-              value={this.state.offerCoupon}
-              />
+              value={this.state.offerCoupon}/>
+
             <Text style={styles.tip}>发放1元打样优惠券（提高被买家选中的概率）</Text>
           </View>
 
         </ScrollView>
-        <Footer navigator={this.props.navigator} config={this.props.config}/>
+
+        <Footer
+          leftButtonText="取消"
+          leftButtonCallback={this.footerLeftButtonCallback.bind(this)}
+          rightButtonText="发送"
+          rightButtonCallback={this.footerRightButtonCallback.bind(this)}
+          />
       </View>
     );
+  }
+
+  headerLeftButtonCallback() {
+    this.props.navigator.pop();
+  }
+
+  footerLeftButtonCallback() {
+    this.props.navigator.pop();
+  }
+
+  footerRightButtonCallback() {
+    this.props.navigator.push({name: 'QuoteSuccess'});
   }
 }
 

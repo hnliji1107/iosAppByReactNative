@@ -18,36 +18,23 @@ import React, {
 
 
 class Footer extends Component {
-  static propTypes = {
-    config: React.PropTypes.object
-  };
-
-  static defaultProps = {
-    config: {}
-  };
-
   render() {
     return (
       <View style={styles.container}>
         <TouchableHighlight
           underlayColor="#f0f0f0"
           style={styles.cancelBtn}
-          onPress={this.props.config.footerBtns[0].callback.bind(this, this.props)}>
-          <View>
-            <Text style={styles.cancelText}>
-              {this.props.config.footerBtns[0].text}
-            </Text>
-          </View>
+          onPress={this.props.leftButtonCallback}>
+
+          <Text style={styles.cancelText}>{this.props.leftButtonText}</Text>
         </TouchableHighlight>
+
         <TouchableHighlight
           underlayColor="orange"
           style={styles.sureBtn}
-          onPress={this.props.config.footerBtns[1].callback.bind(this, this.props)}>
-          <View>
-            <Text style={styles.sureText}>
-              {this.props.config.footerBtns[1].text}
-            </Text>
-          </View>
+          onPress={this.props.rightButtonCallback}>
+
+          <Text style={styles.sureText}>{this.props.rightButtonText}</Text>
         </TouchableHighlight>
       </View>
     );

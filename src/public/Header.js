@@ -18,26 +18,19 @@ import React, {
 
 
 class Header extends Component {
-  static propTypes = {
-    config: React.PropTypes.object
-  };
-
-  static defaultProps = {
-    config: {}
-  };
-
   render() {
-    var headJumpContent, headerBtns = this.props.config.headerBtns || [];
+    var headJumpContent;
 
-    if (headerBtns.length > 0) {
+    if (this.props.leftButtonText) {
       headJumpContent = (
         <TouchableHighlight
           underlayColor="#5989B2"
           style={styles.touchableContainer}
-          onPress={headerBtns[0].callback.bind(this, this.props)}>
+          onPress={this.props.leftButtonCallback}>
+
           <View style={styles.jumpContainer}>
             <Image source={require('image!left-dir')} style={styles.jumpIcon}/>
-            <Text style={styles.text}>{headerBtns[0].text}</Text>
+            <Text style={styles.text}>{this.props.leftButtonText}</Text>
           </View>
         </TouchableHighlight>
       );
@@ -46,8 +39,9 @@ class Header extends Component {
     return (
       <View style={styles.container}>
         {headJumpContent}
+
         <View style={styles.title}>
-          <Text style={styles.text}>{this.props.config.title}</Text>
+          <Text style={styles.text}>{this.props.title}</Text>
         </View>
       </View>
     );

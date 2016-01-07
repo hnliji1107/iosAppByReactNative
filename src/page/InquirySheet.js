@@ -9,13 +9,13 @@
 
 import React, {
   Component,
-  AppRegistry,
   StyleSheet,
   Text,
   View,
   ScrollView,
   Image,
-  TouchableHighlight
+  TouchableHighlight,
+  AlertIOS
   } from 'react-native';
 
 import Header from '../public/Header';
@@ -27,19 +27,22 @@ import ImageSwiper from '../public/ImageSwiper';
 
 class InquirySheet extends Component {
   static propTypes = {
-    navigator: React.PropTypes.object,
-    config: React.PropTypes.object
+    navigator: React.PropTypes.object
   };
 
   static defaultProps = {
-    navigator: {},
-    config: {}
+    navigator: {}
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <Header navigator={this.props.navigator} config={this.props.config}/>
+        <Header
+          title="待报价询价单"
+          leftButtonText="返回"
+          leftButtonCallback={this.headerLeftButtonCallback.bind(this)}
+          />
+
         <ScrollView>
           <ImageSwiper/>
 
@@ -52,10 +55,11 @@ class InquirySheet extends Component {
             <View style={styles.title}>
               <Text style={styles.titleText}>买家名称</Text>
             </View>
+
             <View style={styles.value}>
               <TouchableHighlight underlayColor="transparent">
                 <View style={styles.value}>
-                  <Image source={require('image!ww')} style={styles.ww}></Image>
+                  <Image source={require('image!ww')} style={styles.ww}/>
                   <Text style={styles.valueText}>洛杉矶</Text>
                 </View>
               </TouchableHighlight>
@@ -66,12 +70,13 @@ class InquirySheet extends Component {
             <View style={styles.title}>
               <Text style={styles.titleText}>买家类型</Text>
             </View>
+
             <View style={styles.value}>
-              <Image source={require('image!zuan')} style={styles.zuan}></Image>
-              <Image source={require('image!zuan')} style={styles.zuan}></Image>
-              <Image source={require('image!zuan')} style={styles.zuan}></Image>
-              <Image source={require('image!zuan')} style={styles.zuan}></Image>
-              <Image source={require('image!zuan')} style={styles.zuan}></Image>
+              <Image source={require('image!zuan')} style={styles.zuan}/>
+              <Image source={require('image!zuan')} style={styles.zuan}/>
+              <Image source={require('image!zuan')} style={styles.zuan}/>
+              <Image source={require('image!zuan')} style={styles.zuan}/>
+              <Image source={require('image!zuan')} style={styles.zuan}/>
             </View>
           </View>
 
@@ -79,6 +84,7 @@ class InquirySheet extends Component {
             <View style={styles.title}>
               <Text style={styles.titleText}>买家地区</Text>
             </View>
+
             <View style={styles.value}>
               <Text style={styles.valueText}>杭州</Text>
             </View>
@@ -88,6 +94,7 @@ class InquirySheet extends Component {
             <View style={styles.title}>
               <Text style={styles.titleText}>年销售额</Text>
             </View>
+
             <View style={styles.value}>
               <Text style={styles.valueText}>2000万</Text>
             </View>
@@ -97,6 +104,7 @@ class InquirySheet extends Component {
             <View style={styles.title}>
               <Text style={styles.titleText}>预计加工数量</Text>
             </View>
+
             <View style={styles.value}>
               <Text style={styles.valueText}>200件</Text>
             </View>
@@ -106,6 +114,7 @@ class InquirySheet extends Component {
             <View style={styles.title}>
               <Text style={styles.titleText}>工厂地区要求</Text>
             </View>
+
             <View style={styles.value}>
               <Text style={styles.valueText}>江浙沪</Text>
             </View>
@@ -115,6 +124,7 @@ class InquirySheet extends Component {
             <View style={styles.title}>
               <Text style={styles.titleText}>期望此日期前交货</Text>
             </View>
+
             <View style={styles.value}>
               <Text style={styles.valueText}>2015年11月12日</Text>
             </View>
@@ -124,6 +134,7 @@ class InquirySheet extends Component {
             <View style={styles.title}>
               <Text style={styles.titleText}>加工类型</Text>
             </View>
+
             <View style={styles.value}>
               <Text style={styles.valueText}>轻加工</Text>
             </View>
@@ -133,6 +144,7 @@ class InquirySheet extends Component {
             <View style={styles.title}>
               <Text style={styles.titleText}>加工方式</Text>
             </View>
+
             <View style={styles.value}>
               <Text style={styles.valueText}>来图加工</Text>
             </View>
@@ -142,6 +154,7 @@ class InquirySheet extends Component {
             <View style={styles.title}>
               <Text style={styles.titleText}>报价截止日期</Text>
             </View>
+
             <View style={styles.value}>
               <Text style={styles.valueText}>2015年11月29日</Text>
             </View>
@@ -151,6 +164,7 @@ class InquirySheet extends Component {
             <View style={styles.title}>
               <Text style={styles.titleText}>颜色/尺码</Text>
             </View>
+
             <View style={styles.value}>
               <Text style={styles.valueText}>5色5码</Text>
             </View>
@@ -160,14 +174,38 @@ class InquirySheet extends Component {
             <View style={[styles.title, styles.remarkTitle]}>
               <Text style={[styles.titleText, styles.remarkTitleText]}>备注说明</Text>
             </View>
+
             <View style={[styles.value, styles.remarkValue]}>
               <Text style={[styles.valueText, styles.remarkValueText]}>备注信息备注信息您可在这里填写额外的要求，例如需要做刺绣</Text>
             </View>
           </View>
         </ScrollView>
-        <Footer navigator={this.props.navigator} config={this.props.config}/>
+
+        <Footer
+          leftButtonText="放弃报价"
+          leftButtonCallback={this.footerLeftButtonCallback.bind(this)}
+          rightButtonText="立即报价"
+          rightButtonCallback={this.footerRightButtonCallback.bind(this)}
+          />
       </View>
     );
+  }
+
+  headerLeftButtonCallback() {
+    this.props.navigator.pop();
+  }
+
+  footerLeftButtonCallback() {
+    AlertIOS.alert('放弃后将失去本次报价机会', null, [{
+      text: '取消'
+    }, {
+      text: '确认',
+      onPress: () => this.props.navigator.pop()
+    }], 'default');
+  }
+
+  footerRightButtonCallback() {
+    this.props.navigator.push({name: 'QuoteFillin'});
   }
 }
 

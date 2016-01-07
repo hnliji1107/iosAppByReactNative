@@ -24,25 +24,42 @@ import Agreement from '../public/Agreement';
 
 class SignAgreement extends Component {
   static propTypes = {
-    navigator: React.PropTypes.object,
-    config: React.PropTypes.object
+    navigator: React.PropTypes.object
   };
 
   static defaultProps = {
-    navigator: {},
-    config: {}
+    navigator: {}
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <Header navigator={this.props.navigator} config={this.props.config}/>
+        <Header title="签署协议"/>
+
         <ScrollView>
           <Agreement/>
         </ScrollView>
-        <Footer navigator={this.props.navigator} config={this.props.config}/>
+
+        <Footer
+          leftButtonText="取消"
+          leftButtonCallback={this.footerLeftButtonCallback.bind(this)}
+          rightButtonText="确认签署"
+          rightButtonCallback={this.footerRightButtonCallback.bind(this)}
+          />
       </View>
     );
+  }
+
+  headerLeftButtonCallback() {
+
+  }
+
+  footerLeftButtonCallback() {
+
+  }
+
+  footerRightButtonCallback() {
+    this.props.navigator.push({name: 'InquirySheet'});
   }
 }
 
