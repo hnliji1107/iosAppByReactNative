@@ -50,10 +50,6 @@ class SignAgreement extends Component {
     );
   }
 
-  headerLeftButtonCallback() {
-
-  }
-
   footerLeftButtonCallback() {
 
   }

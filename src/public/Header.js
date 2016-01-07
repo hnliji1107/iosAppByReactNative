@@ -19,10 +19,10 @@ import React, {
 
 class Header extends Component {
   render() {
-    var headJumpContent;
+    var leftButtonJSX;
 
     if (this.props.leftButtonText) {
-      headJumpContent = (
+      leftButtonJSX = (
         <TouchableHighlight
           underlayColor="#5989B2"
           style={styles.touchableContainer}
@@ -38,7 +38,7 @@ class Header extends Component {
 
     return (
       <View style={styles.container}>
-        {headJumpContent}
+        {leftButtonJSX}
 
         <View style={styles.title}>
           <Text style={styles.text}>{this.props.title}</Text>

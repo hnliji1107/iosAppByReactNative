@@ -29,13 +29,6 @@ import Footer from '../public/Footer';
 class QuoteFillin extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      offerPrice: '',
-      offerRemark: '',
-      offerTitle: '',
-      offerCoupon: false
-    };
   }
 
   static propTypes = {
@@ -44,6 +37,13 @@ class QuoteFillin extends Component {
 
   static defaultProps = {
     navigator: {}
+  };
+
+  state = {
+    offerPrice: '',
+    offerRemark: '',
+    offerTitle: '',
+    offerCoupon: false
   };
 
   componentWillMount() {

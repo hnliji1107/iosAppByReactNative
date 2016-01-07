@@ -30,13 +30,6 @@ import host from '../lib/hostConfigs';
 class RelateOffer extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (r1, r2) => r1 !== r2
-      }),
-      cacheOffers: []
-    };
   }
 
   static propTypes = {
@@ -45,6 +38,13 @@ class RelateOffer extends Component {
 
   static defaultProps = {
     navigator: {}
+  };
+
+  state = {
+    dataSource: new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    }),
+    cacheOffers: []
   };
 
   componentWillMount() {
@@ -83,6 +83,7 @@ class RelateOffer extends Component {
     if (this.state.currentOffes) {
 
       if (this.state.currentOffes.length > 0) {
+
         resultJSX = (
           <ListView
             dataSource={this.state.dataSource}
@@ -93,6 +94,7 @@ class RelateOffer extends Component {
       } else {
 
         if (this.state.isSearch) {
+
           resultJSX = (
             <View style={styles.emptyResult}>
               <Image source={require('image!weep')} style={styles.weepSmile}/>
@@ -102,11 +104,7 @@ class RelateOffer extends Component {
 
         } else {
 
-          searBarJSX = (
-            <View>
-              <Text></Text>
-            </View>
-          );
+          searBarJSX = undefined;
 
           resultJSX = (
             <View style={styles.emptyResult}>
@@ -116,7 +114,9 @@ class RelateOffer extends Component {
               <Text style={styles.emptyTip}>请电脑登录1688发布供应产品...</Text>
             </View>
           );
+
         }
+
       }
 
     }
