@@ -27,26 +27,26 @@ import Footer from '../public/Footer';
 
 
 class QuoteFillin extends Component {
-  constructor(props) {
-    super(props);
+  constructor = (props) => {
+    this.super(props);
   }
 
   static propTypes = {
     navigator: React.PropTypes.object
-  };
+  }
 
   static defaultProps = {
     navigator: {}
-  };
+  }
 
   state = {
     offerPrice: '',
     offerRemark: '',
     offerTitle: '',
     offerCoupon: false
-  };
+  }
 
-  componentWillMount() {
+  componentWillMount = () => {
     AsyncStorage.getItem('relateOffer')
       .then(res => {
         this.setState({
@@ -68,13 +68,13 @@ class QuoteFillin extends Component {
       .catch((error) => console.warn(error));
   }
 
-  render() {
+  render = () => {
     return (
       <View style={styles.container}>
         <Header
           title="报价信息"
           leftButtonText="返回"
-          leftButtonCallback={this.headerLeftButtonCallback.bind(this)}
+          leftButtonCallback={this.headerLeftButtonCallback}
           />
 
         <ScrollView>
@@ -140,23 +140,23 @@ class QuoteFillin extends Component {
 
         <Footer
           leftButtonText="取消"
-          leftButtonCallback={this.footerLeftButtonCallback.bind(this)}
+          leftButtonCallback={this.footerLeftButtonCallback}
           rightButtonText="发送"
-          rightButtonCallback={this.footerRightButtonCallback.bind(this)}
+          rightButtonCallback={this.footerRightButtonCallback}
           />
       </View>
     );
   }
 
-  headerLeftButtonCallback() {
+  headerLeftButtonCallback = () => {
     this.props.navigator.pop();
   }
 
-  footerLeftButtonCallback() {
+  footerLeftButtonCallback = () => {
     this.props.navigator.pop();
   }
 
-  footerRightButtonCallback() {
+  footerRightButtonCallback = () => {
     this.props.navigator.push({name: 'QuoteSuccess'});
   }
 }

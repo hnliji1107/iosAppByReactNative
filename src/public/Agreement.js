@@ -16,7 +16,7 @@ import React, {
 
 
 class Agreement extends Component {
-  render() {
+  render = () => {
     return (
       <View style={styles.container}>
         <View>

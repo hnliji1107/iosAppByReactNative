@@ -20,7 +20,7 @@ import Swiper from 'react-native-swiper';
 
 
 class ImageSwiper extends Component {
-  render() {
+  render = () => {
     return (
       <View style={styles.container}>
         <Swiper width={250} height={300}>

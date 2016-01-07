@@ -28,19 +28,19 @@ import ImageSwiper from '../public/ImageSwiper';
 class InquirySheet extends Component {
   static propTypes = {
     navigator: React.PropTypes.object
-  };
+  }
 
   static defaultProps = {
     navigator: {}
-  };
+  }
 
-  render() {
+  render = () => {
     return (
       <View style={styles.container}>
         <Header
           title="待报价询价单"
           leftButtonText="返回"
-          leftButtonCallback={this.headerLeftButtonCallback.bind(this)}
+          leftButtonCallback={this.headerLeftButtonCallback}
           />
 
         <ScrollView>
@@ -183,19 +183,19 @@ class InquirySheet extends Component {
 
         <Footer
           leftButtonText="放弃报价"
-          leftButtonCallback={this.footerLeftButtonCallback.bind(this)}
+          leftButtonCallback={this.footerLeftButtonCallback}
           rightButtonText="立即报价"
-          rightButtonCallback={this.footerRightButtonCallback.bind(this)}
+          rightButtonCallback={this.footerRightButtonCallback}
           />
       </View>
     );
   }
 
-  headerLeftButtonCallback() {
+  headerLeftButtonCallback = () => {
     this.props.navigator.pop();
   }
 
-  footerLeftButtonCallback() {
+  footerLeftButtonCallback = () => {
     AlertIOS.alert('放弃后将失去本次报价机会', null, [{
       text: '取消'
     }, {
@@ -204,7 +204,7 @@ class InquirySheet extends Component {
     }], 'default');
   }
 
-  footerRightButtonCallback() {
+  footerRightButtonCallback = () => {
     this.props.navigator.push({name: 'QuoteFillin'});
   }
 }

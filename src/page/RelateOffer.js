@@ -28,26 +28,26 @@ import host from '../lib/hostConfigs';
 
 
 class RelateOffer extends Component {
-  constructor(props) {
-    super(props);
+  constructor = (props) => {
+    this.super(props);
   }
 
   static propTypes = {
     navigator: React.PropTypes.object
-  };
+  }
 
   static defaultProps = {
     navigator: {}
-  };
+  }
 
   state = {
     dataSource: new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     }),
     cacheOffers: []
-  };
+  }
 
-  componentWillMount() {
+  componentWillMount = () => {
     fetch("http://" + host + ":8081/src/data/relateOffer.json")
       .then(res => res.json())
       .then(res => this.updateDataSource(res))
@@ -56,8 +56,7 @@ class RelateOffer extends Component {
       });
   }
 
-  render() {
-
+  render = () => {
     var resultJSX = (
       <ActivityIndicatorIOS size="large" style={styles.loading}/>
     );
@@ -70,7 +69,7 @@ class RelateOffer extends Component {
           placeholder="请输入产品名称搜索"
           placeholderTextColor="#999"
           returnKeyType="search"
-          onSubmitEditing={this.searchOffer.bind(this)}
+          onSubmitEditing={this.searchOffer}
           style={styles.searchInput}
           />
       </View>
@@ -87,7 +86,7 @@ class RelateOffer extends Component {
         resultJSX = (
           <ListView
             dataSource={this.state.dataSource}
-            renderRow={this.renderRow.bind(this)}
+            renderRow={this.renderRow}
             />
         );
 
@@ -126,7 +125,7 @@ class RelateOffer extends Component {
         <Header
           title="关联产品"
           leftButtonText="返回"
-          leftButtonCallback={this.headerLeftButtonCallback.bind(this)}
+          leftButtonCallback={this.headerLeftButtonCallback}
           />
 
         {searBarJSX}
@@ -135,7 +134,7 @@ class RelateOffer extends Component {
     );
   }
 
-  updateDataSource(data) {
+  updateDataSource = (data) => {
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(data),
       cacheOffers: data,
@@ -143,7 +142,7 @@ class RelateOffer extends Component {
     });
   }
 
-  renderRow(rowData) {
+  renderRow = (rowData) => {
     return (
       <TouchableHighlight onPress={() => this.selectRow(rowData)}>
         <View style={styles.rowContainer}>
@@ -160,7 +159,7 @@ class RelateOffer extends Component {
     );
   }
 
-  selectRow(rowData) {
+  selectRow = (rowData) => {
     AsyncStorage.setItem('relateOffer', JSON.stringify(rowData), () => {
         this.props.navigator.immediatelyResetRouteStack([
           {name: 'SignAgreement'},
@@ -171,7 +170,7 @@ class RelateOffer extends Component {
     );
   }
 
-  searchOffer(event) {
+  searchOffer = (event) => {
     var reg = new RegExp(event.nativeEvent.text, 'ig'),
       searchResult = [];
 
@@ -188,7 +187,7 @@ class RelateOffer extends Component {
     });
   }
 
-  headerLeftButtonCallback() {
+  headerLeftButtonCallback = () => {
     this.props.navigator.pop();
   }
 }

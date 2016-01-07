@@ -22,19 +22,19 @@ import Header from '../public/Header';
 class QuoteSuccess extends Component {
   static propTypes = {
     navigator: React.PropTypes.object
-  };
+  }
 
   static defaultProps = {
     navigator: {}
-  };
+  }
 
-  render() {
+  render = () => {
     return (
       <View style={styles.container}>
         <Header
           title="报价成功"
           leftButtonText="返回"
-          leftButtonCallback={this.headerLeftButtonCallback.bind(this)}
+          leftButtonCallback={this.headerLeftButtonCallback}
           />
 
         <View style={styles.conentContainer}>
@@ -54,7 +54,7 @@ class QuoteSuccess extends Component {
     );
   }
 
-  headerLeftButtonCallback() {
+  headerLeftButtonCallback = () => {
     this.props.navigator.pop();
   }
 }

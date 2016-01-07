@@ -27,7 +27,7 @@ import QuoteSuccess from './src/page/QuoteSuccess';
 
 
 class IosAppByReactNative extends Component {
-  render() {
+  render = () => {
     //页面间切换效果：SceneConfigs = ['PushFromRight','FloatFromRight','FloatFromLeft','FloatFromBottom','FloatFromBottomAndroid','FadeAndroid','HorizontalSwipeJump','VerticalUpSwipeJump','VerticalDownSwipeJump'];
     return (
       <Navigator
@@ -62,7 +62,6 @@ function renderScene(route, navigator) {
       Component = SignAgreement;
       break;
   }
-
 
   return <Component navigator={navigator}/>
 }

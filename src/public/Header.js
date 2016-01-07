@@ -18,7 +18,7 @@ import React, {
 
 
 class Header extends Component {
-  render() {
+  render = () => {
     var leftButtonJSX;
 
     if (this.props.leftButtonText) {

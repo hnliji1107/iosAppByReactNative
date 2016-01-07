@@ -25,13 +25,13 @@ import Agreement from '../public/Agreement';
 class SignAgreement extends Component {
   static propTypes = {
     navigator: React.PropTypes.object
-  };
+  }
 
   static defaultProps = {
     navigator: {}
-  };
+  }
 
-  render() {
+  render = () => {
     return (
       <View style={styles.container}>
         <Header title="签署协议"/>
@@ -42,19 +42,19 @@ class SignAgreement extends Component {
 
         <Footer
           leftButtonText="取消"
-          leftButtonCallback={this.footerLeftButtonCallback.bind(this)}
+          leftButtonCallback={this.footerLeftButtonCallback}
           rightButtonText="确认签署"
-          rightButtonCallback={this.footerRightButtonCallback.bind(this)}
+          rightButtonCallback={this.footerRightButtonCallback}
           />
       </View>
     );
   }
 
-  footerLeftButtonCallback() {
+  footerLeftButtonCallback = () => {
 
   }
 
-  footerRightButtonCallback() {
+  footerRightButtonCallback = () => {
     this.props.navigator.push({name: 'InquirySheet'});
   }
 }
