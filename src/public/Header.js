@@ -19,7 +19,7 @@ import React, {
 
 class Header extends Component {
   render = () => {
-    var leftButtonJSX;
+    let leftButtonJSX;
 
     if (this.props.leftButtonText) {
       leftButtonJSX = (

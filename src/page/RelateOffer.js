@@ -22,8 +22,6 @@ import React, {
 
 import Header from '../public/Header';
 
-import _ from '../lib/underscore';
-
 import host from '../lib/hostConfigs';
 
 
@@ -57,11 +55,11 @@ class RelateOffer extends Component {
   }
 
   render = () => {
-    var resultJSX = (
+    let resultJSX = (
       <ActivityIndicatorIOS size="large" style={styles.loading}/>
     );
 
-    var searBarJSX = (
+    let searBarJSX = (
       <View style={styles.searchContainer}>
         <Image source={require('image!search')} style={styles.searchIcon}/>
 
@@ -171,10 +169,10 @@ class RelateOffer extends Component {
   }
 
   searchOffer = (event) => {
-    var reg = new RegExp(event.nativeEvent.text, 'ig'),
-      searchResult = [];
+    const reg = new RegExp(event.nativeEvent.text, 'ig');
+    let searchResult = [];
 
-    _.each(this.state.cacheOffers, function (offer) {
+    this.state.cacheOffers.forEach(offer => {
       if (reg.test(offer.title)) {
         searchResult.push(offer);
       }
