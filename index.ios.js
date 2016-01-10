@@ -25,6 +25,10 @@ import RelateOffer from './src/page/RelateOffer';
 
 import QuoteSuccess from './src/page/QuoteSuccess';
 
+import InquiryOffer from './src/page/InquiryOffer';
+
+import QuotedOffer from './src/page/QuotedOffer';
+
 
 class IosAppByReactNative extends Component {
   render = () => {
@@ -57,6 +61,12 @@ function renderScene(route, navigator) {
       break;
     case 'QuoteSuccess':
       Component = QuoteSuccess;
+      break;
+    case 'InquiryOffer':
+      Component = InquiryOffer;
+      break;
+    case 'QuotedOffer':
+      Component = QuotedOffer;
       break;
     default:
       Component = SignAgreement;

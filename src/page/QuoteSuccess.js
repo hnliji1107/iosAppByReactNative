@@ -31,11 +31,7 @@ class QuoteSuccess extends Component {
   render = () => {
     return (
       <View style={styles.container}>
-        <Header
-          title="报价成功"
-          leftButtonText="返回"
-          leftButtonCallback={this.headerLeftButtonCallback}
-          />
+        <Header title="报价成功"/>
 
         <View style={styles.conentContainer}>
           <Image source={require('image!smile')} style={styles.weepSmile}/>
@@ -45,6 +41,7 @@ class QuoteSuccess extends Component {
 
           <TouchableHighlight
             underlayColor="orange"
+            onPress={this.jumpToList}
             style={styles.jumpContainer}>
 
             <Text style={styles.jumpButton}>进入询价单列表</Text>
@@ -54,8 +51,8 @@ class QuoteSuccess extends Component {
     );
   }
 
-  headerLeftButtonCallback = () => {
-    this.props.navigator.pop();
+  jumpToList = () => {
+    this.props.navigator.push({name: 'InquiryOffer'})
   }
 }
 

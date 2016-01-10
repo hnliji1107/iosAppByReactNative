@@ -71,11 +71,7 @@ class QuoteFillin extends Component {
   render = () => {
     return (
       <View style={styles.container}>
-        <Header
-          title="报价信息"
-          leftButtonText="返回"
-          leftButtonCallback={this.headerLeftButtonCallback}
-          />
+        <Header title="报价信息"/>
 
         <ScrollView>
           <View style={styles.viewContainer}>

@@ -28,8 +28,8 @@ class Header extends Component {
           style={styles.touchableContainer}
           onPress={this.props.leftButtonCallback}>
 
-          <View style={styles.jumpContainer}>
-            <Image source={require('image!left-dir')} style={styles.jumpIcon}/>
+          <View style={styles.leftButtonContainer}>
+            <Image source={require('image!left-dir')} style={styles.leftButtonIcon}/>
             <Text style={styles.text}>{this.props.leftButtonText}</Text>
           </View>
         </TouchableHighlight>
@@ -40,7 +40,7 @@ class Header extends Component {
       <View style={styles.container}>
         {leftButtonJSX}
 
-        <View style={styles.title}>
+        <View style={[styles.title, this.props.style]}>
           <Text style={styles.text}>{this.props.title}</Text>
         </View>
       </View>
@@ -70,11 +70,11 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     justifyContent: 'center'
   },
-  jumpContainer: {
+  leftButtonContainer: {
     flexDirection: 'row',
     alignItems: 'center'
   },
-  jumpIcon: {
+  leftButtonIcon: {
     marginLeft: 10,
     marginRight: 10,
     width: 12,

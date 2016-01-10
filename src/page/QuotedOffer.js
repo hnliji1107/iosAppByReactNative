@@ -1,8 +1,8 @@
 /*
  * @Author      shijun.lisj
  * @Email       shijun.lisj@alibaba-inc.com
- * @Date        2016.01.02
- * @Description 待报价询价单页面
+ * @Date        2016.01.10
+ * @Description 已报价询价单页面
  */
 
 'use strict';
@@ -14,18 +14,13 @@ import React, {
   View,
   ScrollView,
   Image,
-  TouchableHighlight,
-  AlertIOS
+  TouchableHighlight
   } from 'react-native';
 
 import Header from '../public/Header';
 
-import Footer from '../public/Footer';
 
-import ImageSwiper from '../public/ImageSwiper';
-
-
-class InquirySheet extends Component {
+class QuotedOffer extends Component {
   static propTypes = {
     navigator: React.PropTypes.object
   }
@@ -37,14 +32,46 @@ class InquirySheet extends Component {
   render = () => {
     return (
       <View style={styles.container}>
-        <Header title="待报价询价单"/>
+        <Header
+          title="已报价询价单"
+          leftButtonText="列表"
+          leftButtonCallback={this.headerLeftButtonCallback}
+          style={styles.header}
+          />
 
         <ScrollView>
-          <ImageSwiper/>
-
           <View style={styles.information}>
-            <Text style={styles.buyName}>来自 HINX 的询价</Text>
-            <Text style={styles.navigator}>女装 > 梭织类 > 羽绒服</Text>
+            <View>
+              <Image
+                source={{uri: 'https://cbu01.alicdn.com/img/ibank/2015/663/364/2626463366_598074332.200x200.jpg'}}
+                style={styles.avator}
+                />
+            </View>
+            <View>
+              <Text style={styles.buyName}>来自 HINX 的询价</Text>
+              <Text style={styles.navigator}>女装 > 梭织类 > 羽绒服</Text>
+            </View>
+          </View>
+
+
+          <View style={styles.field}>
+            <View style={styles.title}>
+              <Text style={styles.titleText}>报价</Text>
+            </View>
+
+            <View style={styles.value}>
+              <Text style={styles.valueText}>¥20,000</Text>
+            </View>
+          </View>
+
+          <View style={styles.field}>
+            <View style={styles.title}>
+              <Text style={styles.titleText}>关联产品</Text>
+            </View>
+
+            <View style={styles.value}>
+              <Text style={styles.valueText}>双面羊绒大衣高端修身</Text>
+            </View>
           </View>
 
           <View style={styles.field}>
@@ -56,7 +83,7 @@ class InquirySheet extends Component {
               <TouchableHighlight underlayColor="transparent">
                 <View style={styles.value}>
                   <Image source={require('image!ww')} style={styles.ww}/>
-                  <Text style={styles.valueText}>洛杉矶</Text>
+                  <Text style={styles.valueText}>HINX商家</Text>
                 </View>
               </TouchableHighlight>
             </View>
@@ -108,61 +135,11 @@ class InquirySheet extends Component {
 
           <View style={styles.field}>
             <View style={styles.title}>
-              <Text style={styles.titleText}>工厂地区要求</Text>
+              <Text style={styles.titleText}>品质需求</Text>
             </View>
 
             <View style={styles.value}>
-              <Text style={styles.valueText}>江浙沪</Text>
-            </View>
-          </View>
-
-          <View style={styles.field}>
-            <View style={styles.title}>
-              <Text style={styles.titleText}>期望此日期前交货</Text>
-            </View>
-
-            <View style={styles.value}>
-              <Text style={styles.valueText}>2015年11月12日</Text>
-            </View>
-          </View>
-
-          <View style={styles.field}>
-            <View style={styles.title}>
-              <Text style={styles.titleText}>加工类型</Text>
-            </View>
-
-            <View style={styles.value}>
-              <Text style={styles.valueText}>轻加工</Text>
-            </View>
-          </View>
-
-          <View style={styles.field}>
-            <View style={styles.title}>
-              <Text style={styles.titleText}>加工方式</Text>
-            </View>
-
-            <View style={styles.value}>
-              <Text style={styles.valueText}>来图加工</Text>
-            </View>
-          </View>
-
-          <View style={styles.field}>
-            <View style={styles.title}>
-              <Text style={styles.titleText}>报价截止日期</Text>
-            </View>
-
-            <View style={styles.value}>
-              <Text style={styles.valueText}>2015年11月29日</Text>
-            </View>
-          </View>
-
-          <View style={styles.field}>
-            <View style={styles.title}>
-              <Text style={styles.titleText}>颜色/尺码</Text>
-            </View>
-
-            <View style={styles.value}>
-              <Text style={styles.valueText}>5色5码</Text>
+              <Text style={styles.valueText}>中档</Text>
             </View>
           </View>
 
@@ -176,28 +153,12 @@ class InquirySheet extends Component {
             </View>
           </View>
         </ScrollView>
-
-        <Footer
-          leftButtonText="放弃报价"
-          leftButtonCallback={this.footerLeftButtonCallback}
-          rightButtonText="立即报价"
-          rightButtonCallback={this.footerRightButtonCallback}
-          />
       </View>
     );
   }
 
-  footerLeftButtonCallback = () => {
-    AlertIOS.alert('放弃后将失去本次报价机会', null, [{
-      text: '取消'
-    }, {
-      text: '确认',
-      onPress: () => this.props.navigator.pop()
-    }], 'default');
-  }
-
-  footerRightButtonCallback = () => {
-    this.props.navigator.push({name: 'QuoteFillin'});
+  headerLeftButtonCallback = () => {
+    this.props.navigator.pop();
   }
 }
 
@@ -207,9 +168,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff'
   },
+  header: {
+    alignItems: 'flex-start',
+    paddingLeft: 55
+  },
   information: {
-    marginLeft: 25,
-    marginRight: 25
+    flexDirection: 'row',
+    margin: 25
+  },
+  avator: {
+    marginRight: 10,
+    width: 100,
+    height: 100
   },
   buyName: {
     color: '#444',
@@ -219,7 +189,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 15,
     color: '#898989',
-    fontSize: 16
+    fontSize: 14
   },
   field: {
     flexDirection: 'row',
@@ -278,4 +248,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default InquirySheet;
+export default QuotedOffer;

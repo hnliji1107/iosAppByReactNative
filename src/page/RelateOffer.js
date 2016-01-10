@@ -124,6 +124,7 @@ class RelateOffer extends Component {
           title="关联产品"
           leftButtonText="返回"
           leftButtonCallback={this.headerLeftButtonCallback}
+          style={styles.header}
           />
 
         {searBarJSX}
@@ -195,6 +196,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff'
+  },
+  header: {
+    alignItems: 'flex-start',
+    paddingLeft: 75
   },
   rowContainer: {
     flexDirection: 'row',
